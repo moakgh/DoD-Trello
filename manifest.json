@@ -1,0 +1,16 @@
+{
+  "name": "Validador de Entrega (DoD)",
+  "href": "https://github.com/moakgh/DoD-Trello/blob/47534f40e018e6d90639a259bf272e972896a66b/index.html",
+  "icon": {
+    "url": "https://github.com/moakgh/DoD-Trello/blob/47534f40e018e6d90639a259bf272e972896a66b/DoD_Icon.png"
+  },
+  "capabilities": [
+    "card-badges"
+  ],
+  "categories": [
+    "productivity",
+    "utilities"
+  ],
+  "author": "Seu Nome",
+  "description": "Verifica se todos os itens do checklist foram concluídos antes de validar o cartão."
+}
