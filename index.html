@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="https://p.trellocdn.com/power-up.min.js"></script>
+  </head>
+  <body>
+    <script>
+      // Inicializa o Power-Up
+      window.TrelloPowerUp.initialize({
+        'card-badges': function(t, options) {
+          // Busca todas as informações do cartão atual
+          return t.card('all')
+            .then(function(card) {
+              var checklists = card.checklists;
+              
+              // Se não houver nenhum checklist, não mostra nada
+              if (!checklists || checklists.length === 0) {
+                return [];
+              }
+
+              var totalItems = 0;
+              var completedItems = 0;
+
+              // Percorre os checklists e conta os itens
+              checklists.forEach(function(list) {
+                totalItems += list.checkItems.length;
+                list.checkItems.forEach(function(item) {
+                  if (item.state === 'complete') {
+                    completedItems++;
+                  }
+                });
+              });
+
+              // Lógica do Definition of Done (DoD)
+              var isDone = totalItems > 0 && totalItems === completedItems;
+
+              // Retorna o "adesivo" que aparecerá na frente do cartão
+              return [{
+                text: isDone ? '✅ DoD OK' : '⚠️ DoD Pendente (' + completedItems + '/' + totalItems + ')',
+                color: isDone ? 'green' : 'yellow',
+              }];
+            });
+        }
+      });
+    </script>
+  </body>
+</html>
